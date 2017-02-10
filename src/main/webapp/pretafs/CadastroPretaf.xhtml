@@ -1,0 +1,71 @@
+<ui:composition template="/WEB-INF/template/LayoutPadrao.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:o="http://omnifaces.org/ui"
+    >
+	
+	
+	
+	
+    <ui:define name="titulo">#{cadastroPretafBean.editando ? 'Edição de pretaf' : 'Novo pretaf'}</ui:define>
+    
+    <ui:define name="corpo">
+    
+    
+    	<f:metadata>
+    		<o:viewParam name="pretaf" value="#{cadastroPretafBean.pretaf}" />
+    		<f:event listener="#{cadastroPretafBean.inicializar}" type="preRenderView" />
+    	</f:metadata>
+    
+    	
+		<h:form id="frmCadastro">
+			
+	    	<h1>#{cadastroPretafBean.editando ? 'Edição de pretaf' : 'Novo pretaf'}</h1>
+	    	
+	    	<p:messages autoUpdate="true" closable="true" />
+	    	
+	    	<p:toolbar style="margin-top: 20px">
+	    		<p:toolbarGroup>
+	    			<p:button value="Novo" outcome="/pretafs/CadastroPretaf" />
+	    			<p:commandButton value="Salvar" id="botaoSalvar" action="#{cadastroPretafBean.salvar}" 
+	    				update="@form"
+	    			/>
+	    		</p:toolbarGroup>
+	    		<p:toolbarGroup align="right">
+	    			<p:button value="Pesquisa" outcome="/pretafs/PesquisaPretaf" />
+	    		</p:toolbarGroup>
+	    	</p:toolbar>
+	    	
+	    	<p:panelGrid columns="2" id="painel" style="width: 100%; margin-top: 20px" columnClasses="rotulo, campo">
+	    		
+	    		<p:outputLabel value="Militar" for="militar"  />
+	    		<p:selectOneMenu id="militar" value="#{cadastroPretafBean.pretaf.militar}">
+	    			<f:selectItems value="#{cadastroPretafBean.militaresLista}" var="militar" 
+	    				itemValue="#{militar}" itemLabel="#{militar.nomeGuerra} - #{militar.patenteAbr}" />
+	    		</p:selectOneMenu>
+		    		
+	    		<p:outputLabel value="Dt Realização" for="dt_realizacao"  />
+	    		<p:calendar id="dt_realizacao" size="20" maxlength="20" value="#{cadastroPretafBean.pretaf.dtRealizacao}"></p:calendar>
+	    		
+	    		<p:outputLabel value="Dt Entrega" for="dt_entrega"  />
+	    		<p:calendar id="dt_entrega" size="20" maxlength="20" value="#{cadastroPretafBean.pretaf.dtEntrega}"></p:calendar>
+	    		
+	    		<p:outputLabel value="Resultado" for="resultado"/>
+	    		<p:selectOneMenu id="resultado" value="#{cadastroPretafBean.pretaf.resultado}">
+	    			<f:selectItem itemLabel="APTO" itemValue="APTO"> </f:selectItem>
+	    			<f:selectItem itemLabel="INAPTO" itemValue="INAPTO"> </f:selectItem>
+	    		</p:selectOneMenu>
+	    		
+	    		
+	    		<p:outputLabel value="Observação" for="observacao"/>
+	    		<p:inputText id="observacao" size="200" maxlength="255" value="#{cadastroPretafBean.pretaf.obs}" />
+	    		
+	    	</p:panelGrid>
+	    
+	    </h:form>
+	    	
+    </ui:define>
+</ui:composition>

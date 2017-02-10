@@ -1,0 +1,81 @@
+<ui:composition template="/WEB-INF/template/LayoutPadrao.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:o="http://omnifaces.org/ui"
+    >
+	
+	
+	
+	
+    <ui:define name="titulo">#{cadastroMilitarBean.editando ? 'Edição de militar' : 'Novo militar'}</ui:define>
+    
+    <ui:define name="corpo">
+    
+    
+    	<f:metadata>
+    		<o:viewParam name="militar" value="#{cadastroMilitarBean.militar}" />
+    		<f:event listener="#{cadastroMilitarBean.inicializar}" type="preRenderView" />
+    	</f:metadata>
+    
+    	
+		<h:form id="frmCadastro">
+			
+	    	<h1>#{cadastroMilitarBean.editando ? 'Edição de militar' : 'Novo militar'}</h1>
+	    	
+	    	<p:messages autoUpdate="true" closable="true" />
+	    	
+	    	<p:toolbar style="margin-top: 20px">
+	    		<p:toolbarGroup>
+	    			<p:button value="Novo" outcome="/militares/CadastroMilitar" />
+	    			<p:commandButton value="Salvar" id="botaoSalvar" action="#{cadastroMilitarBean.salvar}" 
+	    				update="@form"
+	    			/>
+	    		</p:toolbarGroup>
+	    		<p:toolbarGroup align="right">
+	    			<p:button value="Pesquisa" outcome="/militares/PesquisaMilitares" />
+	    		</p:toolbarGroup>
+	    	</p:toolbar>
+	    	
+	    	<p:panelGrid columns="2" id="painel" style="width: 100%; margin-top: 20px" columnClasses="rotulo, campo">
+	    		
+	    		<p:outputLabel value="Identidade" for="identidade"/>
+	    		<p:inputText id="identidade" size="20" maxlength="20" value="#{cadastroMilitarBean.militar.identidade}" />
+	    		
+	    		<p:outputLabel value="Nome Completo" for="nome_completo"/>
+	    		<p:inputText id="nome_completo" size="60" maxlength="80" value="#{cadastroMilitarBean.militar.nomeCompleto}" />
+	    		
+	    		<p:outputLabel value="Patente" for="patente"/>
+	    		<p:selectOneMenu id="patente" value="#{cadastroMilitarBean.militar.patente}">
+	    			<f:selectItems var="p" value="#{cadastroMilitarBean.patentes}" itemLabel="#{p.nome}" itemValue="#{p.codigo}" />
+	    		</p:selectOneMenu>
+	    		
+	    		<p:outputLabel value="Nome de Guerra" for="nome_guerra"/>
+	    		<p:inputText id="nome_guerra" size="40" maxlength="40" value="#{cadastroMilitarBean.militar.nomeGuerra}" />
+	    		
+	    		<p:outputLabel value="Dt Nascimento" for="dt_nascimento"  />
+	    		<p:calendar id="dt_nascimento" size="20" maxlength="20" value="#{cadastroMilitarBean.militar.dtNascimento}"></p:calendar>
+	    		
+	    		<p:outputLabel value="Email" for="email"/>
+	    		<p:inputText id="email" size="40" maxlength="40" value="#{cadastroMilitarBean.militar.email}" />
+	    		
+	    		<p:outputLabel value="Sexo" for="sexo" />
+		        <p:selectOneRadio id="sexo" value="#{cadastroMilitarBean.militar.sexo}">
+		            <f:selectItem itemLabel="Masculino" itemValue="M" />
+		            <f:selectItem itemLabel="Feminino" itemValue="F" />
+		        </p:selectOneRadio>
+	    		<!--  
+	    		<p:outputLabel value="Sexo" for="sexo" value="#{cadastroMilitarBean.militar.sexo}">
+	    			<p:radioButton itemLabel="M">M</p:radioButton>
+	    			<p:radioButton itemLabel="F">F</p:radioButton>
+	    		</p:outputLabel>
+	    		-->
+	    		
+	    	</p:panelGrid>
+	    
+	    </h:form>
+	    	
+    </ui:define>
+</ui:composition>
