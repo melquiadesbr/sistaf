@@ -152,16 +152,16 @@ public class Resultado implements Serializable{
 		int[] mencoesPorExercicio2018 = new int[4];
 		
 		/************* CALCULO MENCAO CORRIDA  **************/
-		Map<String,int[]> indicesCorrida = IndicesTaf.getIndicesCorrida();
+		Map<String,int[]> indicesTaf = IndicesTaf.getIndices();
 				 
 		if(this.militar.getIdade() >= 18 && this.militar.getIdade() <= 49){
 			for(int i=0; i<4; i++){
-				if(this.corrida > indicesCorrida.get(""+this.militar.getIdade()+this.militar.getSexo())[i]){
+				if(this.corrida > indicesTaf.get("C"+this.militar.getIdade()+this.militar.getSexo())[i]){
 					mencoesPorExercicio[0] = i+1;
 				}
 			}
 		} else if(this.militar.getIdade() >= 50 && this.militar.getIdade() < 65) {
-			if(this.corrida > indicesCorrida.get(""+this.militar.getIdade()+this.militar.getSexo())[0]){//acima de 50 so tem 1 indice
+			if(this.corrida > indicesTaf.get("C"+this.militar.getIdade()+this.militar.getSexo())[0]){//acima de 50 so tem 1 indice
 				mencoesPorExercicio[0] = Mencao.SUFICIENTE.getIndice();
 			}
 		} else {
@@ -170,7 +170,9 @@ public class Resultado implements Serializable{
 		
 		//mensao a partir de 2018
 		if(!militar.isLinhaBelica()){
-			mencoesPorExercicio2018[0] = Mencao.SUFICIENTE.getIndice();
+			mencoesPorExercicio2018[0] = Mencao.INEXISTENTE.getIndice();
+		} else {
+			mencoesPorExercicio2018[0] = mencoesPorExercicio[0];
 		}
 		/**************************************************************/
 		
