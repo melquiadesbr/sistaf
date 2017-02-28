@@ -1,5 +1,7 @@
 package br.mil.eb.sistaf.util.jpa;
 
+import java.util.Properties;
+
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.RequestScoped;
 import javax.enterprise.inject.Disposes;
@@ -7,6 +9,7 @@ import javax.enterprise.inject.Produces;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+import org.apache.derby.iapi.reference.Property;
 import org.hibernate.Session;
 
 @ApplicationScoped

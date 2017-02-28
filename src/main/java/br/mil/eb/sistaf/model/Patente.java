@@ -2,7 +2,7 @@ package br.mil.eb.sistaf.model;
 
 public enum Patente {
 	
-	SEM_PATENTE(0,"Sem Patente","SP"),
+	SEM_PATENTE(0,"Sem Patente",""),
 	MARECHAL(1,"Marechal","Mar"),
 	GENERAL_EXERCITO(2,"General de Exército","Gen Ex"),
 	GENERAL_DIVISAO(3,"General de Divisão","Gen Div"),

@@ -8,9 +8,7 @@ import javax.inject.Inject;
 
 import org.apache.commons.lang3.StringUtils;
 
-import br.mil.eb.sistaf.model.Militar;
 import br.mil.eb.sistaf.model.Taf;
-import br.mil.eb.sistaf.repository.Militares;
 import br.mil.eb.sistaf.repository.Tafs;
 
 @FacesConverter(forClass = Taf.class)

@@ -42,8 +42,7 @@ public class insertMaps {
 	public static void main(String[] args) throws Exception {
 
 		System.out.println("Loading the Derby jdbc driver...");
-        Class<?> clazz = Class.forName(CSdriver);
-        clazz.getConstructor().newInstance();
+		Class.forName(CSdriver).newInstance();
 	
 		System.out.println("Getting Derby database connection...");
 		Connection connCS = DriverManager.getConnection(dbURLCS);

@@ -164,35 +164,6 @@ in the public API)</li>
 
 </div>
 
-<div class="section"><h2 class="sectiontitle">CacheManagerMBean</h2>
-<p><samp class="codeph">CacheManagerMBean</samp> monitors the page cache, the
-container cache, and the statement cache of a running database
-instance.</p>
-
-<ul>
-<li>Interface:
-<samp class="codeph">org.apache.derby.mbeans.CacheManagerMBean</samp></li>
-
-<li>Implementation:
-<samp class="codeph">org.apache.derby.impl.services.cache.ConcurrentCacheMBeanImpl</samp>
-(not in the public API)</li>
-
-<li>ObjectName:
-<samp class="codeph">org.apache.derby:type=CacheManager,name=PageCache,db=&lt;databaseDir&gt;,system=&lt;sysID&gt;</samp>
-(monitors the page cache), or
-<samp class="codeph">org.apache.derby:type=CacheManager,name=ContainerCache,db=&lt;databaseDir&gt;,system=&lt;sysID&gt;</samp>
-(monitors the container cache), or
-<samp class="codeph">org.apache.derby:type=CacheManager,name=StatementCache,db=&lt;databaseDir&gt;,system=&lt;sysID&gt;</samp>
-(monitors the statement cache)
-</li>
-
-<li>Instruments:
-<samp class="codeph">org.apache.derby.impl.services.cache.ConcurrentCache</samp></li>
-
-</ul>
-
-</div>
-
 </div>
 
 <div>

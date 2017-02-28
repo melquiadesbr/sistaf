@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="cadastro_militares" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="1dc91e10-0daa-4290-983b-1ee6c6c4ff5a">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#8FAFCC">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#CFDBE6">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($V{REPORT_COUNT}.intValue()%2==0)]]></conditionExpression>
+			<style backcolor="#F3F6F8"/>
+		</conditionalStyle>
+	</style>
+	<style name="table 1">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TH" mode="Opaque" backcolor="#8FAFCC">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_CH" mode="Opaque" backcolor="#CFDBE6">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($V{REPORT_COUNT}.intValue()%2==0)]]></conditionExpression>
+			<style backcolor="#F3F6F8"/>
+		</conditionalStyle>
+	</style>
+	<subDataset name="militar" uuid="e8e62573-7b94-47e0-a2dc-3607b20103cd">
+		<queryString language="SQL">
+			<![CDATA[SELECT * FROM Militar]]>
+		</queryString>
+		<field name="ID" class="java.lang.Long">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="DT_NASCIMENTO" class="java.sql.Date">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="EMAIL" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="IDENTIDADE" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="LINHABELICA" class="java.lang.Boolean">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="NOME_COMPLETO" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="NOME_GUERRA" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="PATENTE" class="java.lang.Integer">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="SEXO" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+	</subDataset>
+	<queryString>
+		<![CDATA[select * from Militar]]>
+	</queryString>
+	<field name="ID" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="DT_NASCIMENTO" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMAIL" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="IDENTIDADE" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="LINHABELICA" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NOME_COMPLETO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NOME_GUERRA" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PATENTE" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SEXO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="23" splitType="Stretch">
+			<staticText>
+				<reportElement x="205" y="0" width="398" height="23" uuid="ba9e1d6e-0df5-4cf2-8a37-aa5264dd4605"/>
+				<textElement textAlignment="Center">
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Relatório de Cadastro de Militar]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="702" y="0" width="100" height="20" uuid="9291eadb-9a94-469f-a630-d6f455d37d2e"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="25" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="81" height="20" uuid="515e06ac-a894-4f65-b900-ee713cbcaa77"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[IDT]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="327" y="0" width="114" height="20" uuid="ed2fd10a-3d3d-42cc-ba7c-b1e76aec7e86"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nome de Guerra]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="441" y="0" width="81" height="20" uuid="47eef9f9-1bcb-415d-82bc-a67fab5fd0de"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nasc.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="522" y="0" width="48" height="20" uuid="7b30d35b-41d0-4004-8352-f072ef98795f"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Sexo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="570" y="0" width="147" height="21" uuid="905e815c-c914-4890-90d0-8bab41be39cb"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Email]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="717" y="0" width="81" height="20" uuid="540cc8fc-9d3d-499a-9ce8-2f4c9e798652"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[CodPatente]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="20" width="798" height="1" uuid="05b4d0b1-88eb-436e-8be1-b8178aa0e121"/>
+			</line>
+			<staticText>
+				<reportElement x="81" y="1" width="246" height="20" uuid="e23e3962-ac24-4c32-94be-dd55c904658f"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nome]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="147" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="81" height="20" uuid="3e9fc17d-ab05-4fde-8ce6-ef3303c9284e"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{IDENTIDADE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="327" y="0" width="114" height="20" uuid="0cbb9c68-33e7-4555-a753-62df49dd1e2c"/>
+				<textFieldExpression><![CDATA[$F{NOME_GUERRA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="81" y="1" width="246" height="20" uuid="3f296e92-8beb-4522-9bf7-95702b71ae2a"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{NOME_COMPLETO}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="441" y="0" width="81" height="20" uuid="51933c45-cfb7-434b-842d-7d5f743e73f7"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{DT_NASCIMENTO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="522" y="0" width="48" height="20" uuid="db0d360a-19fa-40a0-aac1-1affa3345ad0"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{SEXO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="570" y="0" width="147" height="21" uuid="3fbc5673-5794-4e0d-9875-f5a7eccb91bf"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{EMAIL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="717" y="0" width="81" height="20" uuid="8b22512d-57de-4a50-bb0b-4b47260c1a79"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{PATENTE}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="136" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="28" splitType="Stretch">
+			<textField>
+				<reportElement x="678" y="8" width="80" height="20" uuid="ff8de1d2-3b65-4b9d-8e54-521a1b2d84c6"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Página "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="758" y="8" width="40" height="20" uuid="514ed7a8-1d39-47e9-8d53-2eeba9f2388b"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

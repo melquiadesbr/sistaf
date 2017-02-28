@@ -183,8 +183,7 @@ public class SimpleNetworkServerSample
 		System.setProperty("derby.drda.startNetworkServer","true");
 
 		// Booting Derby
-        Class<?> clazz = Class.forName("org.apache.derby.jdbc.EmbeddedDriver");
-        clazz.getConstructor().newInstance();
+		Class.forName("org.apache.derby.jdbc.EmbeddedDriver").newInstance();
 	}
 
 

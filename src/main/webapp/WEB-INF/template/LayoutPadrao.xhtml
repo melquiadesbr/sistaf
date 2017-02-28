@@ -34,7 +34,7 @@
 				<SPAN style="font-size: 28px;font-weight: bold;vertical-align:top;">SISTAF - CDS</SPAN>
 			</div>
 			
-			<div style="float: right; margin-right: 110px">
+			<div style="float: right; margin-left: 110px; margin-right: 20px">
 				
 				<!-- PARA VERSÃO COM LOGIN 
 				<span style="float: left; height: 30px; line-height: 30px; margin-right: 60px">
@@ -50,19 +50,17 @@
 							<p:menuitem value="TAF" outcome="/tafs/CadastroTaf" />
 							<p:menuitem value="Pré-TAF" outcome="/pretafs/CadastroPretaf" />
 						</p:submenu>
-						<p:submenu label="Registrar">
-							<p:menuitem value="Militar em TAF" outcome="/resultados/CadastroResultado"/>
-							<p:menuitem value="Resultado de TAF" outcome="/resultados/CadastroResultado"/>
+						<p:submenu label="TAF">
+							<p:menuitem value="Gerenciar TAF" outcome="/resultados/CadastroResultado" />
+							<p:menuitem value="Resultado Final de TAF" outcome="/resultados/ResultadoFinal" />
 						</p:submenu>
-						<p:submenu label="Relatórios">
-							<p:menuitem value="Resultado Geral" />
-							<p:menuitem value="Gráfico" />
+							
+						<p:menuitem value="Estatísticas" outcome="/estatisticas/Graficos"/>
+							
+						<p:submenu label="Ajuda">
+							<p:menuitem value="Sobre o Sistema" />
+							<p:menuitem value="Manual do Usuario" />
 						</p:submenu>
-						<p:submenu label="Configurações">
-							<p:menuitem value="Sistema" />
-							<p:menuitem value="Tabela de Indices" />
-						</p:submenu>
-						<p:menuitem value="Sair" url="#" />
 					</p:menubar>
 				</h:form>
 			</div>

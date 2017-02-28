@@ -129,11 +129,9 @@ not specified, the initial value defaults to be:</p>
 
 <p>The CYCLE clause controls what happens when the sequence generator exhausts
 its range and wraps around. If CYCLE is specified, the wraparound behavior is to
-reinitialize the sequence generator to its MINIMUM or MAXIMUM value. If NO CYCLE is
+reinitialize the sequence generator to its START value. If NO CYCLE is
 specified, <span>Derby</span> throws an
-exception when the generator wraps around. The default behavior is NO CYCLE.
-Note that cycling restarts from the minimum or maximum value, 
-not from the start value.</p>
+exception when the generator wraps around. The default behavior is NO CYCLE.</p>
 
 <p>To retrieve the next value from a sequence generator, use a
 <a href="rrefsqljnextvaluefor.html#rrefsqljnextvaluefor">NEXT VALUE FOR

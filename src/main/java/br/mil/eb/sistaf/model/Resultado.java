@@ -1,6 +1,7 @@
 package br.mil.eb.sistaf.model;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.Map;
 
 import javax.persistence.Column;
@@ -10,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 
 import br.mil.eb.sistaf.util.IndicesTaf;
@@ -25,7 +28,7 @@ public class Resultado implements Serializable{
 	private int barra;
 	private int flexao;
 	private int abdominal;
-	private int mencao = Mencao.INSUFICIENTE.getIndice();
+	private int mencao = Mencao.INEXISTENTE.getIndice();
 	private int novaMencao = Mencao.INEXISTENTE.getIndice(); //mensao a partir de 2018 para linha não bélica
 	private String codBarra;
 	
@@ -33,9 +36,14 @@ public class Resultado implements Serializable{
 	private Taf taf;
 	
 	boolean tafAlternativo = false;
+	private String suficiencia = "-";
+	
+	private Date dtPretafValido;
+	private String resultadoPretaf = "Não Realizado";
+	
+	private String padraoDesempenho;
 	
 	
-		
 	@Id
 	@GeneratedValue
 	public Long getId() {
@@ -44,14 +52,38 @@ public class Resultado implements Serializable{
 	public void setId(Long id) {
 		this.id = id;
 	}
+	@Column(name = "padrao_desempenho")
+	public String getPadraoDesempenho() {
+		return padraoDesempenho;
+	}
+	public void setPadraoDesempenho(String padraoDesempenho) {
+		this.padraoDesempenho = padraoDesempenho;
+	}
+	@Column(name = "nova_mencao")
 	public int getNovaMencao() {
 		return novaMencao;
 	}
 	public void setNovaMencao(int novaMencao) {
 		this.novaMencao = novaMencao;
 	}
+	
+	public String getSuficiencia() {
+		return suficiencia;
+	}
+	public void setSuficiencia(String suficiencia) {
+		this.suficiencia = suficiencia;
+	}
+	@Column(name = "taf_alternativo")
 	public boolean isTafAlternativo() {
 		return tafAlternativo;
+	}
+	@Temporal(TemporalType.DATE)
+	@Column(name = "dt_pretaf_valido")
+	public Date getDtPretafValido() {
+		return dtPretafValido;
+	}
+	public void setDtPretafValido(Date dtPretafValido) {
+		this.dtPretafValido = dtPretafValido;
 	}
 	public void setTafAlternativo(boolean tafAlternativo) {
 		this.tafAlternativo = tafAlternativo;
@@ -64,6 +96,13 @@ public class Resultado implements Serializable{
 	}
 	public int getBarra() {
 		return barra;
+	}
+	@Column(name = "resultado_pretaf")
+	public String getResultadoPretaf() {
+		return resultadoPretaf;
+	}
+	public void setResultadoPretaf(String resultadoPretaf) {
+		this.resultadoPretaf = resultadoPretaf;
 	}
 	public void setBarra(int barra) {
 		this.barra = barra;
@@ -94,7 +133,7 @@ public class Resultado implements Serializable{
 		this.codBarra = codBarra;
 	}
 	@ManyToOne
-	@JoinColumn(nullable = true)
+	@JoinColumn(nullable = false)
 	public Taf getTaf() {
 		return taf;
 	}
@@ -102,7 +141,7 @@ public class Resultado implements Serializable{
 		this.taf = taf;
 	}
 	@ManyToOne
-	@JoinColumn(nullable = true)
+	@JoinColumn(nullable = false)
 	public Militar getMilitar() {
 		return militar;
 	}
@@ -146,38 +185,107 @@ public class Resultado implements Serializable{
 	}
 	
 	@Transient
+	public String getResumoTaf(){
+		
+		return "" + this.getTaf().getNumero() + "º / " 
+				+ this.getTaf().getChamada() + "ª Ch. / " 
+				+ this.getTaf().getAnoTaf();
+		
+	}
+
+	@Transient
 	public void processaMencao(){
+		
+		String[] siglaExercicio = {"B", "C", "F", "A"};
+		int[] indicesDoMilitar = {this.barra, this.corrida, this.flexao, this.abdominal};
+		
+		if(indicesDoMilitar[0]==0 && indicesDoMilitar[1]==0 && indicesDoMilitar[2]==0 && indicesDoMilitar[3]==0){
+			this.mencao = Mencao.INEXISTENTE.getIndice();
+			this.suficiencia = "-";
+			return;
+		} else {
+			this.mencao = Mencao.INSUFICIENTE.getIndice();//inicia com a ultima mencao
+		}
 		
 		int[] mencoesPorExercicio = new int[4];//corrida, barra, flexao, abdominal
 		int[] mencoesPorExercicio2018 = new int[4];
 		
-		/************* CALCULO MENCAO CORRIDA  **************/
-		Map<String,int[]> indicesTaf = IndicesTaf.getIndices();
-				 
-		if(this.militar.getIdade() >= 18 && this.militar.getIdade() <= 49){
-			for(int i=0; i<4; i++){
-				if(this.corrida > indicesTaf.get("C"+this.militar.getIdade()+this.militar.getSexo())[i]){
-					mencoesPorExercicio[0] = i+1;
-				}
-			}
-		} else if(this.militar.getIdade() >= 50 && this.militar.getIdade() < 65) {
-			if(this.corrida > indicesTaf.get("C"+this.militar.getIdade()+this.militar.getSexo())[0]){//acima de 50 so tem 1 indice
-				mencoesPorExercicio[0] = Mencao.SUFICIENTE.getIndice();
-			}
-		} else {
-			mencoesPorExercicio[0] = Mencao.SUFICIENTE.getIndice();
-		}
+		boolean primeiraVezNoIf = true;
 		
-		//mensao a partir de 2018
-		if(!militar.isLinhaBelica()){
-			mencoesPorExercicio2018[0] = Mencao.INEXISTENTE.getIndice();
-		} else {
-			mencoesPorExercicio2018[0] = mencoesPorExercicio[0];
+		/************* CALCULO MENCAO  **************/
+		Map<String,int[]> indicesTaf = IndicesTaf.getIndices();
+			
+		for(int x = 0; x < 4; x++){
+			
+			if(this.militar.getSexo().equals("F") && primeiraVezNoIf){
+				mencoesPorExercicio[0] = 5;
+				x++;//se for mulher nao faz barra
+				primeiraVezNoIf = false;
+			} 
+			
+			if(this.militar.getIdade() >= 18 && this.militar.getIdade() <= 49){
+				for(int i=0; i<4; i++){
+					if(indicesDoMilitar[x] > indicesTaf.get(""+siglaExercicio[x]+this.militar.getIdade()+this.militar.getSexo())[i]){
+						mencoesPorExercicio[x] = i+1;
+					}
+				}
+			} else if(this.militar.getIdade() >= 50 && this.militar.getIdade() < 65) {
+				if(indicesDoMilitar[x] > indicesTaf.get(""+siglaExercicio[x]+this.militar.getIdade()+this.militar.getSexo())[0]){//acima de 50 so tem 1 indice
+					mencoesPorExercicio[x] = Mencao.SUFICIENTE.getIndice();
+				}
+			} else {
+				mencoesPorExercicio[x] = Mencao.SUFICIENTE.getIndice();
+			}
+			
+			//se for taf alternativo, colocar mencao R para indices que nao foram feitos
+			if(indicesDoMilitar[x] == 0 && this.tafAlternativo){
+				mencoesPorExercicio[x] = (this.padraoDesempenho.equals("PBD") ? Mencao.REGULAR.getIndice() : Mencao.BOM.getIndice());
+			}
+			
+			//mensao a partir de 2018
+			if(!militar.isLinhaBelica()){
+				mencoesPorExercicio2018[x] = Mencao.INEXISTENTE.getIndice();
+			} else {
+				mencoesPorExercicio2018[x] = mencoesPorExercicio[x];
+			}
+			
 		}
+			
 		/**************************************************************/
 		
-		this.mencao = mencoesPorExercicio[0]; //TODO recebe o menor valor do array de exercicios
-		this.novaMencao = mencoesPorExercicio2018[0]; //TODO recebe o menor valor do array de exercicios
+		this.mencao = retornarMenor(mencoesPorExercicio); 
+		this.novaMencao = retornarMenor(mencoesPorExercicio);
+		
+		//verifica se foi taf alternativo
+		if(this.tafAlternativo && this.mencao > Mencao.BOM.getIndice()){
+			this.mencao = (this.padraoDesempenho.equals("PBD") ? Mencao.REGULAR.getIndice() : Mencao.BOM.getIndice());
+		}
+		
+		processaSuficiencia();
+		
+		
+	}
+	
+	private void processaSuficiencia(){
+		
+		if(this.mencao >= Mencao.BOM.getIndice() && this.padraoDesempenho.equals("PAD")){
+			this.suficiencia = "S";
+		} else if (this.mencao >= Mencao.REGULAR.getIndice() && this.padraoDesempenho.equals("PBD")){
+			this.suficiencia = "S";
+		} else {
+			this.suficiencia = "NS";
+		}
+		
+	}
+	
+	private int retornarMenor(int[] array){
+		int menorValor = array[0];
+		for(int i=0; i<4; i++){
+			if(array[i] < menorValor){
+				menorValor = array[i];
+			}
+		}
+		return menorValor;
 	}
 	
 	

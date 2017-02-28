@@ -65,7 +65,7 @@ to help you set your classpath quickly. These scripts are: <dl>
 <dt class="dlterm">setEmbeddedCP</dt>
 
 <dd>Use the <span class="cmdname">setEmbeddedCP</span> script to set the classpath when
-the database engine is used in embedded mode. This script adds the <span class="filepath">derby.jar</span>, <span class="filepath">derbytools.jar</span> and <span class="filepath">derbyoptionaltools.jar</span> files
+the database engine is used in embedded mode. This script adds the <span class="filepath">derby.jar</span> and <span class="filepath">derbytools.jar</span> files
 to the classpath. </dd>
 
 
@@ -80,7 +80,7 @@ to the classpath. </dd>
 
 <dd>Use the <span class="cmdname">setNetworkClientCP</span> script to set the classpath
 when you want to access databases using the network client. This script adds
-the <span class="filepath">derbyclient.jar</span>, <span class="filepath">derbytools.jar</span> and <span class="filepath">derbyoptionaltools.jar</span> files
+the <span class="filepath">derbyclient.jar</span> and <span class="filepath">derbytools.jar</span> files
 to the classpath. </dd>
 
 </dl>
@@ -124,7 +124,7 @@ sh-2.05b$ echo $CLASSPATH
 sh-2.05b$ DERBY_HOME=/derby/db-derby-10.X.Y.0-bin
 sh-2.05b$ . $DERBY_HOME/bin/setEmbeddedCP
 sh-2.05b$ echo $CLASSPATH
-/derby/db-derby-10.X.Y.0-bin/lib/derby.jar:/derby/db-derby-10.X.Y.0-bin/lib/derbytools.jar:/derby/db-derby-10.X.Y.0-bin/lib/derbyoptionaltools.jar:
+/derby/db-derby-10.X.Y.0-bin/lib/derby.jar:/derby/db-derby-10.X.Y.0-bin/lib/derbytools.jar:
 sh-2.05b$ java org.apache.derby.tools.ij
 ij version 10.X
 ij&gt; quit;
@@ -149,7 +149,7 @@ C:\derby\db-derby-10.X.Y.0-bin\bin&gt;echo %CLASSPATH%
 C:\derby\db-derby-10.X.Y.0-bin\bin&gt;set DERBY_HOME=C:\derby\db-derby-10.X.Y.0-bin
 C:\derby\db-derby-10.X.Y.0-bin\bin&gt;setEmbeddedCP.bat
 C:\derby\db-derby-10.X.Y.0-bin\bin&gt;echo %CLASSPATH%
-C:\derby\DB-DERBY-10.X.Y.0-bin\lib\derby.jar;C:\derby\DB-DERBY-10.X.Y.0-bin\lib\derbytools.jar;C:\derby\DB-DERBY-10.X.Y.0-bin\lib\derbyoptionaltools.jar;
+C:\derby\DB-DERBY-10.X.Y.0-bin\lib\derby.jar;C:\derby\DB-DERBY-10.X.Y.0-bin\lib\derbytools.jar;
 C:\derby\db-derby-10.X.Y.0-bin\bin&gt;java org.apache.derby.tools.ij
 ij version 10.X
 ij&gt; quit;

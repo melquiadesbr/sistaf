@@ -62,7 +62,6 @@
   permission java.util.PropertyPermission "user.dir", "read";
   permission java.util.PropertyPermission "derby.storage.jvmInstanceId", 
       "write"; 
-  permission org.apache.derby.security.SystemPermission "engine", "usederbyinternals";
   // The next two properties are used to determine if the VM is 32-bit
   // or 64-bit.
   permission java.util.PropertyPermission "sun.arch.data.model", "read";
@@ -171,8 +170,7 @@ grant codeBase "file:///Users/me/javadb/lib/derbynet.jar"
   permission java.util.PropertyPermission 
       "derby.__serverStartedFromCmdLine", "read, write";
 
-  // JMX: Needed to boot MBeans
-  permission org.apache.derby.security.SystemPermission "engine", "usederbyinternals";
+  //
   // JMX: Uncomment this permission to allow the ping operation of the 
   //      NetworkServerMBean to connect to the Network Server.
   //permission java.net.SocketPermission "*", "connect,resolve";

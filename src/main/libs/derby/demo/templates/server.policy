@@ -24,12 +24,7 @@ grant codeBase "${derby.install.url}derby.jar"
   // These permissions are needed for everyday, embedded Derby usage.
   //
   permission java.lang.RuntimePermission "createClassLoader";
-  permission org.apache.derby.security.SystemPermission "engine", "usederbyinternals";
-
-  // Next, the permission to read "derby.*" properties is granted to
-  // derby.jar. This is necessary for the engine to read derby properties.
   permission java.util.PropertyPermission "derby.*", "read";
-
   permission java.util.PropertyPermission "user.dir", "read";
 
   // The next two properties are used to determine if the VM is 32 or 64 bit.
@@ -130,9 +125,6 @@ grant codeBase "${derby.install.url}derbynet.jar"
   permission java.lang.RuntimePermission "getFileStoreAttributes";
   permission java.util.PropertyPermission "derby.__serverStartedFromCmdLine",
       "read, write";
-
-  // Needed to start the monitoring MBeans
-  permission org.apache.derby.security.SystemPermission "engine", "usederbyinternals";
 
   // JMX: Uncomment this permission to allow the ping operation of the
   //      NetworkServerMBean to connect to the Network Server.

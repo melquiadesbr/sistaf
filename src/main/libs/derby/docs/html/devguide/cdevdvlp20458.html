@@ -67,8 +67,6 @@ diagnosing a double boot problem, use the
 both successful and unsuccessful boot attempts. The property is described in
 the <span><em>Derby Reference Manual</em></span>.</p>
 
-<p>If Derby is not able to create the <em>db.lck</em> file when booting a database, the database will be booted in read-only mode. This may happen due to lack of disk space or access rights for the database directory. The boot message in the <em>derby.log</em> will state that the database has been booted in READ ONLY mode. See also <a href="cdevdeploy15325.html#cdevdeploy15325">Creating Derby databases for read-only use</a>.</p>
-
 <p>If you need to access a single database from more than one
 Java Virtual Machine (JVM), you will need to put a server solution in place. You
 can allow applications from multiple JVMs that need to access that database to

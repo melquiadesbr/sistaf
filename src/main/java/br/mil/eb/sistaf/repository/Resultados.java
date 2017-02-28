@@ -5,20 +5,15 @@ import java.util.List;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
-import javax.persistence.NoResultException;
 import javax.persistence.PersistenceException;
 
-import org.apache.commons.lang3.StringUtils;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
-import org.hibernate.criterion.MatchMode;
+import org.hibernate.criterion.Example;
 import org.hibernate.criterion.Order;
-import org.hibernate.criterion.Restrictions;
 
-import br.mil.eb.sistaf.model.Militar;
 import br.mil.eb.sistaf.model.Resultado;
-import br.mil.eb.sistaf.resository.filter.MilitarFilter;
-import br.mil.eb.sistaf.resository.filter.ResultadoFilter;
+import br.mil.eb.sistaf.model.Taf;
 import br.mil.eb.sistaf.service.NegocioException;
 import br.mil.eb.sistaf.util.jpa.Transactional;
 
@@ -46,23 +41,32 @@ public class Resultados implements Serializable{
 		}
 	}
 	
-	public List<Resultado> filtrados(ResultadoFilter filtro){
+	public List<Resultado> filtrados(Taf taf){
 		
 		Session session = manager.unwrap(Session.class);
-		@SuppressWarnings("deprecation")
-		Criteria criteria = session.createCriteria(Resultado.class);
+
+		Resultado resultado = new Resultado();
+
+		Example exampleResultado = Example.create(resultado)
+				.excludeZeroes()
+				.excludeProperty("suficiencia")
+				.excludeProperty("mencao")
+				.excludeProperty("novaMencao")
+				.excludeProperty("dtPretafValido")
+				.excludeProperty("resultadoPretaf")
+				.excludeProperty("tafAlternativo");
 		
-		/*
-		if(StringUtils.isNotBlank(filtro.getIdentidade())){
-			criteria.add(Restrictions.eq("identidade", filtro.getIdentidade()));
-		}
+		Example exampleTaf = Example.create(taf)
+				.excludeZeroes()
+				.excludeProperty("dtCadastro");
 		
-		if(StringUtils.isNotBlank(filtro.getNomeGuerra())){
-			criteria.add(Restrictions.ilike("nomeGuerra", filtro.getNomeGuerra(), MatchMode.ANYWHERE));
-		}
-		*/
+		Criteria criteria = session.createCriteria(Resultado.class).addOrder(Order.desc("id")).add(exampleResultado)
+				.createCriteria("taf")
+				.add(exampleTaf);
 		
-		return criteria.addOrder(Order.asc("codBarra")).list();
+		List<Resultado> resultados = criteria.list();
+		      
+		return resultados;
 	}
 
 	public Resultado porId(Long id){

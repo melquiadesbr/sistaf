@@ -33,6 +33,10 @@ public class Taf implements Serializable{
 	private Date dtTaf;
 	private int dia;
 	private List<Resultado> resultados = new ArrayList<>();
+	private boolean ativo = true;
+	private Date dtCadastro = new Date(System.currentTimeMillis());
+	private String otfm;
+
 	
 	@Id
 	@GeneratedValue
@@ -42,7 +46,27 @@ public class Taf implements Serializable{
 	public void setId(Long id) {
 		this.id = id;
 	}
-	
+	@Temporal(TemporalType.DATE)
+	@Column(name = "dt_cadastro")
+	@NotNull
+	public Date getDtCadastro() {
+		return dtCadastro;
+	}
+	public void setDtCadastro(Date dtCadastro) {
+		this.dtCadastro = dtCadastro;
+	}
+	public String getOtfm() {
+		return otfm;
+	}
+	public void setOtfm(String otfm) {
+		this.otfm = otfm;
+	}
+	public boolean isAtivo() {
+		return ativo;
+	}
+	public void setAtivo(boolean ativo) {
+		this.ativo = ativo;
+	}
 	@OneToMany(mappedBy = "taf", cascade = CascadeType.ALL)
 	public List<Resultado> getResultados() {
 		return resultados;
@@ -50,13 +74,14 @@ public class Taf implements Serializable{
 	public void setResultados(List<Resultado> resultados) {
 		this.resultados = resultados;
 	}
-	
+	@NotNull
 	public int getNumero() {
 		return numero;
 	}
 	public void setNumero(int numero) {
 		this.numero = numero;
 	}
+	@NotNull
 	public int getChamada() {
 		return chamada;
 	}
@@ -64,6 +89,7 @@ public class Taf implements Serializable{
 		this.chamada = chamada;
 	}
 	@Column(name = "dt_taf")
+	@NotNull
 	public Date getDtTaf() {
 		return dtTaf;
 	}
@@ -78,7 +104,7 @@ public class Taf implements Serializable{
 
 		return calendar.get(Calendar.YEAR);
 	}
-	
+	@NotNull
 	public int getDia() {
 		return dia;
 	}

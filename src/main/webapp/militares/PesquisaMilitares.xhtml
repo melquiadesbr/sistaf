@@ -27,6 +27,7 @@
 	    		</p:toolbarGroup>
 	    	</p:toolbar>
 	    	
+	    	
 	    	<p:panelGrid columns="2" id="painel" style="width: 100%; margin-top: 20px"
 	    			columnClasses="rotulo, campo">
 	    		<p:outputLabel value="Identidade" for="identidade"/>
@@ -37,38 +38,115 @@
 	    	</p:panelGrid>
 	    	
 	    	
-	    	<p:dataTable id="militaresTable" value="#{pesquisaMilitaresBean.militaresFiltrados}" var="militar"
-	    		style="margin-top: 20px" emptyMessage="Nenhum militar encontrado." rows="20"
-	    		paginator="true" paginatorAlwaysVisible="false" paginatorPosition="bottom">
-	    		<p:column headerText="Identidade" style="text-align: center; width: 100px">
+	    	
+	    	<p:dataTable id="militaresTable" value="#{pesquisaMilitaresBean.militaresFiltrados}" var="militar" 
+	    		widgetVar="militaresTable" 
+	    		emptyMessage="Nenhum militar encontrado." 
+	    		filteredValue="#{pesquisaMilitaresBean.militaresFiltradosPrimefaces}"  
+	    		paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
+                paginator="true" rows="10" style="margin-bottom:20px; margin-top: 20px" paginatorPosition="bottom">
+	    		
+	    		
+	    		
+        
+	    		<f:facet name="{Exporters}">
+            		<div style="float:right">
+            			<h:commandLink>
+	                 		<p:graphicImage name="/images/excel.png" width="24"/>
+	                		<p:dataExporter type="xls" target="militaresTable" fileName="militares" />
+			            </h:commandLink>
+			 
+			            <h:commandLink>
+			                <p:graphicImage name="images/pdf.png" width="24"/>
+			                <p:dataExporter type="pdf" target="militaresTable" fileName="militares" />
+			            </h:commandLink>
+			 
+			            <h:commandLink>
+			                <p:graphicImage name="images/csv.png" width="24"/>
+			                <p:dataExporter type="csv" target="militaresTable" fileName="militares" />
+			            </h:commandLink>
+            		</div>
+            	</f:facet>
+            	<!-- 
+            	<f:facet name="header">
+		            <p:outputPanel>
+		                <h:outputText value="Search all fields:" />
+		                <p:inputText id="globalFilter" onkeyup="PF('militaresTable').filter()" style="width:150px" placeholder="Enter keyword"/>
+		            </p:outputPanel>
+		        </f:facet>
+		        -->
+		        
+	    		<p:column style="text-align: center; width: 100px" sortBy="#{militar.identidade}">
+	  				<f:facet name="header">
+	  					<h:outputText value="Identidade" />
+	    			</f:facet>
 	    			<h:outputText value="#{militar.identidade}" />
 	    		</p:column>
-	    		<p:column headerText="Nome Completo">
+	    		<p:column>
+	    			<f:facet name="header">
+	    				<h:outputText value="Nome Completo" />
+	    			</f:facet>
 	    			<h:outputText value="#{militar.nomeCompleto}" />
 	    		</p:column>
-	    		<p:column headerText="Patente">
+	    		<p:column style="text-align: center; width: 60px">
+	    			<f:facet name="header">
+	    				<h:outputText value="OM"/>
+	    			</f:facet>
+	    			<h:outputText value="#{militar.om}"/>
+	    		</p:column>
+	    		<p:column style="text-align: center; width: 100px">
+	    			<f:facet name="header">
+	    				<h:outputText value="Patente"/>
+	    			</f:facet>
 	    			<h:outputText value="#{militar.patenteAbr}"/>
 	    		</p:column>
-	    		<p:column headerText="Nomde de Guerra">
+	    		<p:column style="text-align: center; width: 100px">
+	    			<f:facet name="header">
+	    				<h:outputText value="Arm/Qua/Ser"/>
+	    			</f:facet>
+	    			<h:outputText value="#{militar.quadro}"/>
+	    		</p:column>
+	    		<p:column>
+	    			<f:facet name="header">
+	    				<h:outputText value="Nome de Guerra"/>
+	    			</f:facet>
 	    			<h:outputText value="#{militar.nomeGuerra}"/>
 	    		</p:column>
 	    		
-	    		<p:column headerText="Dt Nascimento" style="text-align: center; width: 140px">
-	    			<h:outputText value="#{militar.dtNascimento}">
+	    		<p:column style="text-align: center; width: 100px">
+	    			<f:facet name="header">
+		    			<h:outputText value="Nascimento"/>		    				
+		    		</f:facet>
+		    		<h:outputText value="#{militar.dtNascimento}">
 	    				<f:convertDateTime pattern="dd/MM/yyyy" />
 	    			</h:outputText>
 	    		</p:column>
 	    		
-	    		<p:column headerText="Email">
+	    		<p:column>
+	    			<f:facet name="header"><h:outputText value="Email"/></f:facet>
 	    			<h:outputText value="#{militar.email}"/>
 	    		</p:column>
-	    		<p:column headerText="Sexo">
-	    			<h:outputText value="#{militar.sexo}"/>
+	    		
+	    		<p:column style="text-align: center; width: 150px" headerText="Sexo">
+		            <h:outputText value="#{militar.sexo}" />
+		        </p:column>
+		        
+		        <p:column style="text-align: center; width: 100px">
+	    			<f:facet name="header">
+		    			<h:outputText value="Cadastro"/>		    				
+		    		</f:facet>
+		    		<h:outputText value="#{militar.dtCadastro}">
+	    				<f:convertDateTime pattern="dd/MM/yyyy" />
+	    			</h:outputText>
 	    		</p:column>
 	    		
+		        <p:column style="text-align: center; width: 60px" headerText="Ativo">
+		            <h:outputText value="#{militar.ativo}" />
+		        </p:column>
 	    		
 	    		
-	    		<p:column style="width: 100px; text-align: center">
+	    		
+	    		<p:column style="width: 100px; text-align: center" exportable="false">
 	    			<p:button outcome="/militares/CadastroMilitar" icon="ui-icon-pencil" title="Editar">
 	    				<f:param name="militar" value="#{militar.id}" />
 	    			</p:button>
@@ -79,6 +157,7 @@
 	    			</p:commandButton>
 	    		</p:column>
 	    	</p:dataTable>
+
 	    	
 	    	<p:confirmDialog header="Exclusão de militar" 
 	    		message="Tem certeza que deseja excluir militar #{pesquisaMilitaresBean.militarSelecionado.nomeGuerra}, idt = #{pesquisaMilitaresBean.militarSelecionado.identidade}?"

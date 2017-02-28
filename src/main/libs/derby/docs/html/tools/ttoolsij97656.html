@@ -67,7 +67,7 @@ using the <samp class="codeph"><a href="rtoolsijcomref22318.html">Connect</a></s
 command and the embedded driver:</p>
 
 <pre><strong>java org.apache.derby.tools.ij</strong>
-ij version <span>10.13</span>
+ij version <span>10.11</span>
 ij&gt; <strong>connect 'jdbc:derby:sample';</strong>
 ij&gt;</pre>
 
@@ -75,7 +75,7 @@ ij&gt;</pre>
 <samp class="codeph">Connect</samp> command loads the Network Client driver:</p>
 
 <pre><strong>java org.apache.derby.tools.ij</strong>
-ij version <span>10.13</span>
+ij version <span>10.11</span>
 ij&gt; <strong>connect 'jdbc:derby://localhost:1527/sample';</strong>
 ij&gt;</pre>
 
@@ -122,7 +122,7 @@ property.</p>
 <pre><strong>java -Dij.database=jdbc:derby:myTours;create=true \
     org.apache.derby.tools.ij \
     %DERBY_HOME%\demo\programs\toursdb\ToursDB_schema.sql</strong>
-ij version <span>10.13</span>
+ij version <span>10.11</span>
 CONNECTION0* -  jdbc:derby:myTours
 * = current connection
 ij&gt; -- Licensed to the Apache Software Foundation (ASF) under one or more
@@ -150,7 +150,7 @@ name. This "short form" of the database connection URL defaults the protocol
 and a "short form" connection URL:</p>
 
 <pre><strong>java org.apache.derby.tools.ij</strong>
-ij version <span>10.13</span>
+ij version <span>10.11</span>
 ij&gt;<strong> protocol 'jdbc:derby:';</strong>
 ij&gt; <strong>connect 'sample';</strong>
 ij&gt;

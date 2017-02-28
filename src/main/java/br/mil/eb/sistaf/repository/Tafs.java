@@ -55,16 +55,6 @@ public class Tafs implements Serializable{
 		}
 	}
 	
-	public Taf porId(String id) {
-		try {
-			//linguagem JPQL 
-			return manager.createQuery("from Taf where id = :id", Taf.class)
-				.setParameter("id", id)
-				.getSingleResult();
-		} catch (NoResultException e) {
-			return null;
-		}
-	}
 	
 	public List<Taf> filtrados(TafFilter filtro){
 		

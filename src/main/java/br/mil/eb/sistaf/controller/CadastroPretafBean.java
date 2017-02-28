@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import javax.enterprise.inject.Produces;
+import javax.faces.bean.ManagedBean;
 import javax.faces.model.SelectItem;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;

@@ -8,7 +8,7 @@
 =========================================================================
 
 Apache Derby
-Copyright 2004-2016 The Apache Software Foundation
+Copyright 2004-2014 The Apache Software Foundation
 
 This product includes software developed by
 The Apache Software Foundation (http://www.apache.org/).
@@ -40,6 +40,20 @@ International Business Machines Corporation in accordance with the NIST
 Software Acknowledgment and Redistribution document at
 http://www.itl.nist.gov/div897/ctg/sql_form.htm
 
+
+
+=========================================================================
+
+
+The JDBC apis for small devices and JDBC3 (under java/stubs/jsr169 and
+java/stubs/jdbc3) were produced by trimming sources supplied by the
+Apache Harmony project. In addition, the Harmony SerialBlob and
+SerialClob implementations are used. The following notice covers the Harmony sources:
+
+Portions of Harmony were originally developed by
+Intel Corporation and are licensed to the Apache Software
+Foundation under the "Software Grant and Corporate Contribution
+License Agreement", informally known as the "Intel Harmony CLA".
 
 
 =========================================================================
@@ -277,10 +291,3 @@ grants independently of ICOT any specific warranty to the user in
 writing, such person, organization or entity, will also be exempted
 from and not be held liable to the user for any such damages as noted
 above as far as the program is concerned.
-
-=========================================================================
-
-The Derby build relies on a jar file supplied by the JSON Simple
-project, hosted at https://code.google.com/p/json-simple/.
-The JSON simple jar file is licensed under the Apache 2.0 License.
-No other notice covers that jar file.

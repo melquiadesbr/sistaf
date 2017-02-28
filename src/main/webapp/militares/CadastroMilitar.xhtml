@@ -49,8 +49,14 @@
 	    		
 	    		<p:outputLabel value="Patente" for="patente"/>
 	    		<p:selectOneMenu id="patente" value="#{cadastroMilitarBean.militar.patente}">
-	    			<f:selectItems var="p" value="#{cadastroMilitarBean.patentes}" itemLabel="#{p.nome}" itemValue="#{p.codigo}" />
+	    			<f:selectItems var="p" value="#{cadastroMilitarBean.patentes}" itemLabel="#{p.nomeAbr}" itemValue="#{p.codigo}" />
 	    		</p:selectOneMenu>
+	    		
+	    		<p:outputLabel value="Arma/Quadro/Serviço" for="quadro"/>
+	    		<p:inputText id="quadro" size="40" maxlength="40" value="#{cadastroMilitarBean.militar.quadro}" />
+	    		
+	    		<p:outputLabel value="Sigla da OM" for="om"/>
+	    		<p:inputText id="om" size="40" maxlength="40" value="#{cadastroMilitarBean.militar.om}" />
 	    		
 	    		<p:outputLabel value="Nome de Guerra" for="nome_guerra"/>
 	    		<p:inputText id="nome_guerra" size="40" maxlength="40" value="#{cadastroMilitarBean.militar.nomeGuerra}" />

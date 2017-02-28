@@ -64,9 +64,7 @@ a CREATE AGGREGATE or CREATE TYPE statement.</p>
 <p>The method name specified in the CREATE FUNCTION or CREATE PROCEDURE
 statement normally takes the following form:</p>
 
-<pre><strong>'<em>class_name</em>.<em>method_name</em>[(<em>parameterTypes</em>)]'</strong></pre>
-
-<p>The optional <em>parameterTypes</em> specification is needed when the Java signature determined from the SQL declaration is ambiguous.</p>
+<pre><strong>'<em>class_name</em>.<em>method_name</em>'</strong></pre>
 
 <p>If the class is a static nested class, or if the method is in a static nested
 class, use a dollar sign ($) as a separator between the outer and static class.
@@ -97,15 +95,6 @@ RETURNS DOUBLE
 PARAMETER STYLE JAVA
 NO SQL LANGUAGE JAVA
 EXTERNAL NAME 'TestFuncs$MyMath.pow'</strong></pre>
-
-<pre><strong>-- create a function to round a Double to a specified number of decimal places
-CREATE FUNCTION DoubleFormat (value FLOAT, places INTEGER)
-RETURNS FLOAT
-PARAMETER STYLE JAVA
-LANGUAGE JAVA
-EXTERNAL NAME
-'utils.Utils.Double(java.lang.Float,java.lang.Integer)'
-</strong></pre>
 
 </div>
 

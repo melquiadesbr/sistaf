@@ -77,9 +77,9 @@ SELECT NAME, COMM
 -- using a query which selects from a VALUES clause (which is an 
 -- alternate form of a fullselect). 
 -- This query shows how a table can be derived called "X" having 
--- 1 column "R1" and 1 row of data.
-SELECT R1 
-	FROM (VALUES('GROUP 1')) AS X(R1)</span>
+-- 2 columns "R1" and "R2" and 1 row of data.
+SELECT R1,R2 
+	FROM (VALUES('GROUP 1','GROUP 2')) AS X(R1,R2)</span>
 </strong></pre>
  </div>
 

@@ -1,14 +1,18 @@
 package br.mil.eb.sistaf.model;
 
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "Pretaf")
@@ -41,12 +45,14 @@ public class Pretaf implements Serializable{
 	public void setId(Long id) {
 		this.id = id;
 	}
+	@Column(name = "dt_realizacao")
 	public Date getDtRealizacao() {
 		return dtRealizacao;
 	}
 	public void setDtRealizacao(Date dtRealizacao) {
 		this.dtRealizacao = dtRealizacao;
 	}
+	@Column(name = "dt_entrega")
 	public Date getDtEntrega() {
 		return dtEntrega;
 	}
@@ -65,7 +71,15 @@ public class Pretaf implements Serializable{
 	public void setObs(String obs) {
 		this.obs = obs;
 	}
+	@Transient
+	public int getAnoPretaf(){
+		
+		Calendar calendar = new GregorianCalendar();
+		calendar.setTime(this.dtRealizacao);
 
+		return calendar.get(Calendar.YEAR);
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

@@ -3,6 +3,7 @@ package br.mil.eb.sistaf.controller;
 import java.io.Serializable;
 
 import javax.enterprise.inject.Produces;
+import javax.faces.bean.ManagedBean;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;

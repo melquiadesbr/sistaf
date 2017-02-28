@@ -7,13 +7,12 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 
+import javax.enterprise.inject.Produces;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -22,8 +21,6 @@ import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotBlank;
-
-import br.mil.eb.sistaf.util.jpa.Transactional;
 
 @Entity
 @Table(name = "Militar")
@@ -42,6 +39,11 @@ public class Militar implements Serializable{
 	private List<Pretaf> preTafs = new ArrayList<>();
 	private List<Resultado> resultados = new ArrayList<>();
 	private boolean linhaBelica = false;
+	private String quadro;
+	private boolean ativo = true;
+	private Date dtCadastro = new Date(System.currentTimeMillis());
+	private String om;
+
 	
 	@Id
 	@GeneratedValue
@@ -51,6 +53,7 @@ public class Militar implements Serializable{
 	public void setId(Long id) {
 		this.id = id;
 	}
+	@Column(name = "linha_belica")
 	public boolean isLinhaBelica() {
 		return linhaBelica;
 	}
@@ -96,12 +99,14 @@ public class Militar implements Serializable{
 	}
 	@Temporal(TemporalType.DATE)
 	@Column(name = "dt_nascimento")
+	@NotNull
 	public Date getDtNascimento() {
 		return dtNascimento;
 	}
 	public void setDtNascimento(Date dtNascimento) {
 		this.dtNascimento = dtNascimento;
 	}
+	@NotNull
 	public String getSexo() {
 		return sexo;
 	}
@@ -123,6 +128,41 @@ public class Militar implements Serializable{
 	@Transient
 	public String getPatenteAbr(){
 		return Patente.values()[this.getPatente()].getNomeAbr();
+	}
+	public String getQuadro() {
+		return quadro;
+	}
+	public void setQuadro(String quadro) {
+		this.quadro = quadro;
+	}
+	public boolean isAtivo() {
+		return ativo;
+	}
+	public void setAtivo(boolean ativo) {
+		this.ativo = ativo;
+	}
+	@Temporal(TemporalType.DATE)
+	@Column(name = "dt_cadastro")
+	public Date getDtCadastro() {
+		return dtCadastro;
+	}
+	public void setDtCadastro(Date dtCadastro) {
+		this.dtCadastro = dtCadastro;
+	}
+	public String getOm() {
+		return om;
+	}
+	public void setOm(String om) {
+		this.om = om;
+	}
+	
+	@Transient
+	public String getUltimoPretaf() {
+		if(preTafs.isEmpty()){
+			return "Não Realizado";
+		} else {
+			return preTafs.get(preTafs.size()-1).getResultado() + " / " + preTafs.get(preTafs.size()-1).getAnoPretaf();
+		}
 	}
 	
 	@Transient

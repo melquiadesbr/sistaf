@@ -70,18 +70,10 @@ You are strongly urged to enable user authentication and user authorization when
 you run a Network Server. For details on how to configure user authentication
 and authorization,
 see "Configuring user authentication" and "Configuring user authorization" in
+the <span><em>Derby Security Guide</em></span>. You
+are also urged to install a Java security manager with a customized security
+policy. For details on how to do this, see "Configuring Java security," also in
 the <span><em>Derby Security Guide</em></span>.</p>
-
-<p>You are also urged to install a Java security manager with a customized security policy. 
-For details on how to do this, see "Configuring Java security," also in
-the <span><em>Derby Security Guide</em></span>. By default a security manager will be installed with a default security policy when a Network Server is started. This default policy file is called <samp class="codeph">server.policy</samp> and is part of 
-<samp class="codeph">derbynet.jar</samp>.
-There is also a <samp class="codeph">template.policy</samp> file in <samp class="codeph">derbynet.jar</samp> which can be used as starting point for a customized server policy file. For more information about policy files, granting permissions, and property
-expansion, see "Default Policy Implementation and Policy File Syntax" at
-<a href="http://docs.oracle.com/javase/7/docs/technotes/guides/security/PolicyFiles.html" target="_blank">http://docs.oracle.com/javase/7/docs/technotes/guides/security/PolicyFiles.html</a>
-and "Policy File Creation and Management" at
-<a href="http://docs.oracle.com/javase/7/docs/technotes/guides/security/PolicyGuide.html" target="_blank">http://docs.oracle.com/javase/7/docs/technotes/guides/security/PolicyGuide.html</a>.
-</p>
 
 <p>If you are running Java SE 7 or later, and if you start the
 <span>Derby</span> Network Server from the
@@ -120,9 +112,9 @@ Network Server. The following table shows the sequence of commands.</p>
 
 <thead align="left">
 <tr valign="bottom">
-<th valign="bottom" width="25%" id="N10161">Operating System</th>
+<th valign="bottom" width="25%" id="N10131">Operating System</th>
 
-<th valign="bottom" width="75%" id="N10168">Command</th>
+<th valign="bottom" width="75%" id="N10138">Command</th>
 
 </tr>
 
@@ -130,9 +122,9 @@ Network Server. The following table shows the sequence of commands.</p>
 
 <tbody>
 <tr>
-<td valign="top" width="25%" headers="N10161">Windows</td>
+<td valign="top" width="25%" headers="N10131">Windows</td>
 
-<td valign="top" width="75%" headers="N10168"><pre><strong><kbd class="userinput">set DERBY_HOME=C:\derby</kbd></strong>
+<td valign="top" width="75%" headers="N10138"><pre><strong><kbd class="userinput">set DERBY_HOME=C:\derby</kbd></strong>
 <strong><kbd class="userinput">set JAVA_HOME=C:\Program Files\Java\jdk1.6.0_24</kbd></strong>
 <strong><kbd class="userinput">set PATH=%DERBY_HOME%\bin;%PATH%</kbd></strong>
 <strong><kbd class="userinput">startNetworkServer</kbd></strong></pre>
@@ -141,9 +133,9 @@ Network Server. The following table shows the sequence of commands.</p>
 </tr>
 
 <tr>
-<td valign="top" width="25%" headers="N10161">UNIX (Korn Shell)</td>
+<td valign="top" width="25%" headers="N10131">UNIX (Korn Shell)</td>
 
-<td valign="top" width="75%" headers="N10168"><pre><strong><kbd class="userinput">export DERBY_HOME=/opt/derby</kbd></strong>
+<td valign="top" width="75%" headers="N10138"><pre><strong><kbd class="userinput">export DERBY_HOME=/opt/derby</kbd></strong>
 <strong><kbd class="userinput">export JAVA_HOME=/usr/j2se</kbd></strong>
 <strong><kbd class="userinput">export PATH="$DERBY_HOME/bin:$PATH"</kbd></strong>
 <strong><kbd class="userinput">startNetworkServer</kbd></strong></pre>
@@ -172,9 +164,9 @@ in the following table.</p>
 
 <thead align="left">
 <tr valign="bottom">
-<th valign="bottom" width="25%" id="N10264">Operating System</th>
+<th valign="bottom" width="25%" id="N10234">Operating System</th>
 
-<th valign="bottom" width="75%" id="N1026B">Command</th>
+<th valign="bottom" width="75%" id="N1023B">Command</th>
 
 </tr>
 
@@ -182,9 +174,9 @@ in the following table.</p>
 
 <tbody>
 <tr>
-<td valign="top" width="25%" headers="N10264">Windows</td>
+<td valign="top" width="25%" headers="N10234">Windows</td>
 
-<td valign="top" width="75%" headers="N1026B"><pre><strong><kbd class="userinput">set DERBY_HOME=C:\derby</kbd></strong>
+<td valign="top" width="75%" headers="N1023B"><pre><strong><kbd class="userinput">set DERBY_HOME=C:\derby</kbd></strong>
 <strong><kbd class="userinput">java -jar %DERBY_HOME%\lib\derbyrun.jar server start</kbd></strong>
 or
 <strong><kbd class="userinput">java -jar %DERBY_HOME%\lib\derbynet.jar start</kbd></strong></pre>
@@ -193,9 +185,9 @@ or
 </tr>
 
 <tr>
-<td valign="top" width="25%" headers="N10264">UNIX (Korn Shell)</td>
+<td valign="top" width="25%" headers="N10234">UNIX (Korn Shell)</td>
 
-<td valign="top" width="75%" headers="N1026B"><pre><strong><kbd class="userinput">export DERBY_HOME=/opt/derby</kbd></strong>
+<td valign="top" width="75%" headers="N1023B"><pre><strong><kbd class="userinput">export DERBY_HOME=/opt/derby</kbd></strong>
 <strong><kbd class="userinput">java -jar $DERBY_HOME/lib/derbyrun.jar server start</kbd></strong>
 or
 <strong><kbd class="userinput">java -jar $DERBY_HOME/lib/derbynet.jar start</kbd></strong></pre>
@@ -228,9 +220,9 @@ table.</p>
 
 <thead align="left">
 <tr valign="bottom">
-<th valign="bottom" width="25%" id="N10365">Operating System</th>
+<th valign="bottom" width="25%" id="N10335">Operating System</th>
 
-<th valign="bottom" width="75%" id="N1036C">Command</th>
+<th valign="bottom" width="75%" id="N1033C">Command</th>
 
 </tr>
 
@@ -238,18 +230,18 @@ table.</p>
 
 <tbody>
 <tr>
-<td valign="top" width="25%" headers="N10365">Windows</td>
+<td valign="top" width="25%" headers="N10335">Windows</td>
 
-<td valign="top" width="75%" headers="N1036C"><pre><strong><kbd class="userinput">%DERBY_HOME%\bin\setNetworkServerCP</kbd></strong>
+<td valign="top" width="75%" headers="N1033C"><pre><strong><kbd class="userinput">%DERBY_HOME%\bin\setNetworkServerCP</kbd></strong>
 <strong><kbd class="userinput">java org.apache.derby.drda.NetworkServerControl start</kbd></strong></pre>
 </td>
 
 </tr>
 
 <tr>
-<td valign="top" width="25%" headers="N10365">UNIX (Korn Shell)</td>
+<td valign="top" width="25%" headers="N10335">UNIX (Korn Shell)</td>
 
-<td valign="top" width="75%" headers="N1036C"><pre><strong><kbd class="userinput">$DERBY_HOME/bin/setNetworkServerCP</kbd></strong>
+<td valign="top" width="75%" headers="N1033C"><pre><strong><kbd class="userinput">$DERBY_HOME/bin/setNetworkServerCP</kbd></strong>
 <strong><kbd class="userinput">java org.apache.derby.drda.NetworkServerControl start</kbd></strong></pre>
 </td>
 

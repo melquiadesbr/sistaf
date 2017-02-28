@@ -1,0 +1,65 @@
+<ui:composition template="/WEB-INF/template/LayoutPadrao.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:o="http://omnifaces.org/ui">
+	
+    <ui:define name="titulo">Estatisticas</ui:define>
+    
+    <ui:define name="corpo">
+     
+    	<f:metadata>
+    		<f:event listener="#{estatisticasBean.inicializar}" type="preRenderView" />
+    	</f:metadata>
+    
+    	
+		<h:form id="frmResultadoFinal">
+			
+	    	<h1>Estatisticas</h1>
+	    	
+	    	<p:toolbar style="margin-top: 20px">
+	    		
+	    		<p:toolbarGroup>
+		    		<p:selectOneMenu id="numero" value="#{estatisticasBean.filtro.numero}">
+		    			<f:selectItem itemLabel="Todos os TAFs" />
+		    			<f:selectItem itemLabel="1º TAF" itemValue="1"/>
+		    			<f:selectItem itemLabel="2º TAF" itemValue="2"/>
+		    			<f:selectItem itemLabel="3º TAF" itemValue="3"/>
+		    		</p:selectOneMenu>
+	
+		    		<p:selectOneMenu id="chamada" value="#{estatisticasBean.filtro.chamada}">
+		    			<f:selectItem itemLabel="Todas as Chamadas" />
+		    			<f:selectItem itemLabel="1º Chamada" itemValue="1"/>
+		    			<f:selectItem itemLabel="2º Chamada" itemValue="2"/>
+		    			<f:selectItem itemLabel="3º Chamada" itemValue="3"/>
+		    			<f:selectItem itemLabel="4º Chamada" itemValue="4"/>
+		    			<f:selectItem itemLabel="5º Chamada" itemValue="5"/>
+		    		</p:selectOneMenu>
+		    		
+		    		<p:selectOneMenu id="ano" value="#{estatisticasBean.filtro.ano}">
+		    			<f:selectItem itemLabel="Todos os Anos" />
+		    			<f:selectItem itemLabel="2017" itemValue="2017"/>
+		    			<f:selectItem itemLabel="2018" itemValue="2018"/>
+		    			<f:selectItem itemLabel="2019" itemValue="2019"/>
+		    			<f:selectItem itemLabel="2020" itemValue="2020"/>
+		    			<f:selectItem itemLabel="2021" itemValue="2021"/>
+		    		</p:selectOneMenu>
+		    		
+		    	</p:toolbarGroup>
+		    	<p:toolbarGroup>
+		    		<p:commandButton value="Buscar" id="botaoBuscar" action="#{estatisticasBean.buscar}" 
+	    				update="@form"
+	    			/>
+	    		</p:toolbarGroup>
+	    	</p:toolbar>
+	    	
+	    	<br />
+	    	
+	    	<p:chart type="bar" model="#{estatisticasBean.barModel}" style="height:500px;" />
+	    
+    	</h:form>
+    	
+    </ui:define>
+</ui:composition>

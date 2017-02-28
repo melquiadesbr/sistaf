@@ -3,6 +3,7 @@ package br.mil.eb.sistaf.controller;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.faces.bean.ManagedBean;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -24,6 +25,7 @@ public class PesquisaMilitaresBean implements Serializable {
 	
 	private MilitarFilter filtro;
 	private List<Militar> militaresFiltrados;
+	private List<Militar> militaresFiltradosPrimefaces;
 	
 	private Militar militarSelecionado;
 	
@@ -63,6 +65,17 @@ public class PesquisaMilitaresBean implements Serializable {
 	public Militar getMilitarSelecionado() {
 		return militarSelecionado;
 	}
+
+	
+	public List<Militar> getMilitaresFiltradosPrimefaces() {
+		return militaresFiltradosPrimefaces;
+	}
+
+
+	public void setMilitaresFiltradosPrimefaces(List<Militar> militaresFiltradosPrimefaces) {
+		this.militaresFiltradosPrimefaces = militaresFiltradosPrimefaces;
+	}
+
 
 	public void setMilitarSelecionado(Militar militarSelecionado) {
 		this.militarSelecionado = militarSelecionado;

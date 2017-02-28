@@ -62,19 +62,11 @@ Server requires additional permissions as well.</p>
 included in <a href="rsecpolicysample.html">Sample customized Java security policy file</a>.</p>
 
 <div class="section"><h2 class="sectiontitle">Mandatory permissions</h2><dl>
-
 <dt class="dlterm">permission java.lang.RuntimePermission "createClassLoader"</dt>
 
 <dd>Mandatory. It allows
 <span>Derby</span> to execute SQL queries
 and supports loading class files from jar files stored in the database.</dd>
-
-
-
-<dt class="dlterm">permission org.apache.derby.security.SystemPermission "engine", "usederbyinternals"</dt>
-
-<dd>Mandatory. It allows <span>Derby</span> to access sensitive structures which application code should not touch.</dd>
-
 
 
 <dt class="dlterm">permission java.util.PropertyPermission "derby.*", "read"</dt>
@@ -83,7 +75,6 @@ and supports loading class files from jar files stored in the database.</dd>
 individual <span>Derby</span> properties
 set in the JVM system properties. If the action is denied, the properties set in
 the JVM system properties are ignored.</dd>
-
 
 </dl>
 </div>

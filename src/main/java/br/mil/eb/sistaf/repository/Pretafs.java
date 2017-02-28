@@ -8,12 +8,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceException;
 
-import org.apache.commons.lang3.StringUtils;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
-import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Order;
-import org.hibernate.criterion.Restrictions;
 
 import br.mil.eb.sistaf.model.Pretaf;
 import br.mil.eb.sistaf.resository.filter.PretafFilter;
@@ -44,32 +41,11 @@ public class Pretafs implements Serializable{
 		}
 	}
 	
-	public Pretaf porIdentidade(String identidade) {
-		try {
-			//linguagem JPQL 
-			return manager.createQuery("from Pretaf where identidade = :identidade", Pretaf.class)
-				.setParameter("identidade", identidade)
-				.getSingleResult();
-		} catch (NoResultException e) {
-			return null;
-		}
-	}
-	
 	public List<Pretaf> filtrados(PretafFilter filtro){
 		
 		Session session = manager.unwrap(Session.class);
 		@SuppressWarnings("deprecation")
 		Criteria criteria = session.createCriteria(Pretaf.class);
-		
-		/*
-		if(StringUtils.isNotBlank(filtro.getIdentidade())){
-			criteria.add(Restrictions.eq("identidade", filtro.getIdentidade()));
-		}
-		
-		if(StringUtils.isNotBlank(filtro.getNomeGuerra())){
-			criteria.add(Restrictions.ilike("nomeGuerra", filtro.getNomeGuerra(), MatchMode.ANYWHERE));
-		}
-		*/
 		
 		return criteria.addOrder(Order.asc("id")).list();
 	}

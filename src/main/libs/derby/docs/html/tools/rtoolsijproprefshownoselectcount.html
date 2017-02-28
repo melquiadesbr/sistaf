@@ -79,7 +79,7 @@ select count messages are displayed.</p>
 then with the property set to <samp class="codeph">false</samp>.</p>
 
 <pre><strong>java -Dij.showNoCountForSelect=true org.apache.derby.tools.ij</strong>
-ij version <span>10.13</span> 
+ij version <span>10.11</span> 
 ij&gt; <strong>connect 'jdbc:derby:sample';</strong>
 ij&gt; <strong>create table t1 (c1 int);</strong>
 0 rows inserted/updated/deleted
@@ -95,7 +95,7 @@ ij&gt; <strong>disconnect;</strong>
 ij&gt; <strong>exit;</strong>
 
 <strong>java -Dij.showNoCountForSelect=false org.apache.derby.tools.ij</strong>
-ij version <span>10.13</span> 
+ij version <span>10.11</span> 
 <strong>connect 'jdbc:derby:sample';</strong>
 ij&gt; <strong>select * from t1;</strong>
 C1
