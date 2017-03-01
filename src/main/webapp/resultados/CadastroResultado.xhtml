@@ -6,9 +6,6 @@
     xmlns:p="http://primefaces.org/ui"
     xmlns:o="http://omnifaces.org/ui">
 	
-    <ui:define name="titulo">Incluir Militar em TAF</ui:define>
-    
-    
     
     <ui:define name="corpo">
      
@@ -46,7 +43,7 @@
 		    	</p:toolbarGroup>
 		    	<p:toolbarGroup>
 		    		<p:inputText id="codigo" size="20" onchange="javascript:document.getElementById('botaoSalvar').click()" maxlength="20" value="#{cadastroResultadoBean.resultado.codBarra}" />
-		    		<p:commandButton value="Registrar Número"  id="botaoSalvar" action="#{cadastroResultadoBean.salvar}" 
+		    		<p:commandButton value="Registrar Código"  id="botaoSalvar" action="#{cadastroResultadoBean.salvar}" 
 	    				update="codigo, frmCadastroResultado:resultadosTable"
 	    			/>
 		    	</p:toolbarGroup>
