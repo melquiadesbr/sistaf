@@ -29,7 +29,7 @@ public class Resultado implements Serializable{
 	private int flexao;
 	private int abdominal;
 	private int mencao = Mencao.INEXISTENTE.getIndice();
-	private int novaMencao = Mencao.INEXISTENTE.getIndice(); //mensao a partir de 2018 para linha não bélica
+	private int novaMencao = Mencao.INEXISTENTE.getIndice(); //mensao a partir de 2018
 	private String codBarra;
 	
 	private Militar militar;
@@ -37,6 +37,7 @@ public class Resultado implements Serializable{
 	
 	boolean tafAlternativo = false;
 	private String suficiencia = "-";
+	private String novaSuficiencia = "-"; //suficiencia a apartir de 2018
 	
 	private Date dtPretafValido;
 	private String resultadoPretaf = "Não Realizado";
@@ -51,6 +52,13 @@ public class Resultado implements Serializable{
 	}
 	public void setId(Long id) {
 		this.id = id;
+	}
+	@Column(name = "nova_suficiencia")
+	public String getNovaSuficiencia() {
+		return novaSuficiencia;
+	}
+	public void setNovaSuficiencia(String novaSuficiencia) {
+		this.novaSuficiencia = novaSuficiencia;
 	}
 	@Column(name = "padrao_desempenho")
 	public String getPadraoDesempenho() {

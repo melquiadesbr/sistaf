@@ -67,17 +67,21 @@
 		                <p:dataExporter type="csv" target="resultadosFinalTable" fileName="resultados" />
 		            </h:commandLink>
 	        	</p:toolbarGroup>
+	        	<!-- 
 	        	<p:toolbarGroup align="right" style="margin-right: 20px">
 	        		<p:commandButton id="toggler" type="button" value="Columns" style="float:right" icon="ui-icon-calculator" />
 			        <p:columnToggler datasource="resultadosFinalTable" trigger="toggler" />
 	        	</p:toolbarGroup>
+	        	-->
 		    	
 	    	</p:toolbar>
 	    
     	   
 	    	<p:dataTable id="resultadosFinalTable" value="#{resultadoFinalBean.resultadosFiltrados}" var="resultado" widgetVar="resultadosFinalTable" 
 	    		filteredValue="#{resultadoFinalBean.resultadosFiltradosPrimefaces}"  rowIndexVar="rowIndex" 
-	               paginator="true" style="margin-bottom:20px" paginatorPosition="bottom" editable="true" editMode="cell">
+	               paginator="true" rows="10000" style="margin-bottom:20px" paginatorPosition="bottom"
+	               paginatorTemplate="{CurrentPageReport}"
+        		   currentPageReportTemplate="Total encontrado: {totalRecords}">
 	    		
 	    		<p:column headerText="Ord" style="text-align: center; width:25px;">
 	    			<h:outputText value="#{rowIndex+1}" />
@@ -97,7 +101,7 @@
 	    		<p:column headerText="Nome de Guerra" style="width:140px" sortBy="#{resultado.militar.nomeGuerra}" filterBy="#{resultado.militar.nomeGuerra}" filterMatchMode="contains" filterStyle="width:130px">
 	    			<h:outputText value="#{resultado.militar.nomeGuerra}"/>
 	    		</p:column>
-	    		<p:column headerText="Nome Completo" sortBy="#{resultado.militar.nomeCompleto}" filterBy="#{resultado.militar.nomeCompleto}" filterMatchMode="contains" filterStyle="width:200px">
+	    		<p:column headerText="Nome Completo" style="width:250px;" sortBy="#{resultado.militar.nomeCompleto}" filterBy="#{resultado.militar.nomeCompleto}" filterMatchMode="contains" filterStyle="width:250px">
 	    			<h:outputText value="#{resultado.militar.nomeCompleto}"/>
 	    		</p:column>
 	    		<p:column headerText="PréTAF" style="width:86px; text-align: center;" sortBy="#{resultado.dtPretafValido}" filterBy="#{resultado.dtPretafValido}" filterMatchMode="contains" filterStyle="width:80px">

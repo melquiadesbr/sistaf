@@ -38,6 +38,7 @@ public class ResultadosFinais implements Serializable{
 				.excludeZeroes()
 				.excludeProperty("mencao")
 				.excludeProperty("suficiencia")
+				.excludeProperty("novaSuficiencia")
 				.excludeProperty("dtPretafValido")
 				.excludeProperty("novaMencao")
 				.excludeProperty("resultadoPretaf")

@@ -50,6 +50,7 @@ public class Resultados implements Serializable{
 		Example exampleResultado = Example.create(resultado)
 				.excludeZeroes()
 				.excludeProperty("suficiencia")
+				.excludeProperty("novaSuficiencia")
 				.excludeProperty("mencao")
 				.excludeProperty("novaMencao")
 				.excludeProperty("dtPretafValido")

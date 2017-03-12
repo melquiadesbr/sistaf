@@ -67,7 +67,7 @@
 	    	<p:toolbar style="margin-top: 20px">
 	        	<p:toolbarGroup>
 	        		<p:commandButton value="Salvar Todos" id="botaoSalvarTodos" action="#{cadastroResultadoBean.salvarLista}" 
-	    				update="@form"
+	    				update="@form" style="margin-right:50px"
 	    			/>
 	        	</p:toolbarGroup>
 	        	<p:toolbarGroup>
@@ -127,15 +127,13 @@
 		            </h:commandLink>
 		            
 	        	</p:toolbarGroup>
-	        	<p:toolbarGroup align="right" style="margin-right: 20px">
-	        		<p:commandButton id="toggler" type="button" value="Columns" style="float:right" icon="ui-icon-calculator" />
-			        <p:columnToggler datasource="resultadosTable" trigger="toggler" />
-	        	</p:toolbarGroup>
 	        </p:toolbar>
 		        
 	    	<p:dataTable id="resultadosTable" value="#{cadastroResultadoBean.resultadoLista}" var="resultado" widgetVar="resultadosTable" 
 	    		filteredValue="#{cadastroResultadoBean.resultadosFiltradosPrimefaces}" rowIndexVar="rowIndex" 
-                paginator="true" style="margin-bottom:20px" paginatorPosition="bottom" editable="true" editMode="cell">
+                paginator="true" rows="10000" style="margin-bottom:20px" paginatorPosition="bottom" editable="true" editMode="cell" 
+                paginatorTemplate="{CurrentPageReport}"
+        		currentPageReportTemplate="Total encontrado: {totalRecords}">
 	    		
 	    		<p:column visible="false" headerText="TAF">
 	    			<h:outputText value="#{resultado.militar.preTafs}" />
@@ -158,7 +156,7 @@
 	    		<p:column headerText="Nome de Guerra" style="width:140px;" sortBy="#{resultado.militar.nomeGuerra}" filterBy="#{resultado.militar.nomeGuerra}" filterMatchMode="contains" filterStyle="width:130px">
 	    			<h:outputText value="#{resultado.militar.nomeGuerra}"/>
 	    		</p:column>
-	    		<p:column headerText="Nome Completo" sortBy="#{resultado.militar.nomeCompleto}" filterBy="#{resultado.militar.nomeCompleto}" filterMatchMode="contains" filterStyle="width:250px">
+	    		<p:column headerText="Nome Completo" style="width:250px;" sortBy="#{resultado.militar.nomeCompleto}" filterBy="#{resultado.militar.nomeCompleto}" filterMatchMode="contains" filterStyle="width:250px">
 	    			<h:outputText value="#{resultado.militar.nomeCompleto}"/>
 	    		</p:column>
 	    		<p:column headerText="PréTAF" style="width:86px; text-align: center;" sortBy="#{resultado.dtPretafValido}" filterBy="#{resultado.dtPretafValido}" filterMatchMode="contains" filterStyle="width:80px">
