@@ -48,7 +48,7 @@
 		    	</p:toolbarGroup>
 		    	<p:toolbarGroup>
 		    		<p:commandButton value="Buscar" id="botaoBuscar" action="#{resultadoFinalBean.buscar}" 
-	    				update="@form"
+	    				update="@form" oncomplete="PF('resultadosFinalTable').clearFilters()" 
 	    			/>
 	    		</p:toolbarGroup>
 	    		<p:toolbarGroup align="right">

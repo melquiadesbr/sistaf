@@ -26,7 +26,10 @@
 	    		<p:toolbarGroup>
 	    			
 		    		<p:selectOneMenu id="taf" value="#{cadastroResultadoBean.resultado.taf}">
-		    			<f:ajax event="change" render="codigo, frmCadastroResultado:resultadosTable" listener="#{cadastroResultadoBean.carregarResultados}" />
+		    			<f:ajax event="change" render="codigo, frmCadastroResultado" listener="#{cadastroResultadoBean.carregarResultados}" />
+		    			<!-- 
+		    			<f:ajax event="change" onevent="PF('resultadosTable').clearFilters()" render="codigo, frmCadastroResultado" listener="#{cadastroResultadoBean.carregarResultados}" />
+		    			-->
 		    			<f:selectItem itemValue="" itemLabel="Selecione o TAF"  />
 		    			<f:selectItems value="#{cadastroResultadoBean.tafsLista}" var="taf" 
 		    				itemValue="#{taf}" itemLabel="#{taf.numero}º Taf de #{taf.anoTaf} / #{taf.chamada}ª Ch. / Dia #{taf.dia}" />
@@ -104,7 +107,7 @@
 		    			<f:selectItem itemLabel="3150" itemValue="3150"></f:selectItem>
 		    			<f:selectItem itemLabel="3200" itemValue="3200"></f:selectItem>
 		    			<f:selectItem itemLabel="3250" itemValue="3250"></f:selectItem>
-		    			<f:selectItem itemLabel="3300" itemValue="3000"></f:selectItem>
+		    			<f:selectItem itemLabel="3300" itemValue="3300"></f:selectItem>
 		    		</p:selectOneMenu>
 	        	</p:toolbarGroup>
 	        	<p:toolbarGroup>
@@ -131,7 +134,7 @@
 		        
 	    	<p:dataTable id="resultadosTable" value="#{cadastroResultadoBean.resultadoLista}" var="resultado" widgetVar="resultadosTable" 
 	    		filteredValue="#{cadastroResultadoBean.resultadosFiltradosPrimefaces}" rowIndexVar="rowIndex" 
-                paginator="true" rows="10000" style="margin-bottom:20px" paginatorPosition="bottom" editable="true" editMode="cell" 
+                paginator="true" rows="10000" style="margin-bottom:20px" paginatorPosition="bottom"  
                 paginatorTemplate="{CurrentPageReport}"
         		currentPageReportTemplate="Total encontrado: {totalRecords}">
 	    		
